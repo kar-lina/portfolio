@@ -1,0 +1,25 @@
+a{
+  color: pink;
+}
+a:hover{
+  color: #fff;
+}
+
+.link{
+  position: relative;
+}
+.link::before{
+  background: pink;
+  content:'';
+  position: absolute;
+  padding: 3px;
+  margin: -3px;
+  inset: 0;
+  transform: scaleX(0);
+  transition: transform .3s, color .3s;
+  z-index: -1;
+
+}
+.link:hover::before{
+  transform: scaleX(1);
+}
