@@ -1,7 +1,6 @@
 export function headerScroll() {
   const headerEl = document.querySelector('.header');
   const callback = (entries, observer) => {
-    console.log('entries', entries);
     
     if (entries[0].isIntersecting) {
       headerEl.classList.remove('_scroll');

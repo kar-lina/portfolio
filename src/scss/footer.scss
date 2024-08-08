@@ -55,9 +55,18 @@
       .footer__socials-icon {
         color: $accentColor;
       }
+      .footer__socials-vk{
+        fill: $accentColor;
+      }
     }
+  }
+  &__socials-vk {
+    fill: currentColor;
   }
 
   &__copyright {
+    display: flex;
+    gap: toRem(4);
+    @include adaptiveValue("font-size", 18, 12);
   }
 }

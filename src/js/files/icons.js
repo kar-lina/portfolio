@@ -1,6 +1,6 @@
 
 // Recommended way, to include only the icons you need.
-import { createIcons, Menu, ArrowRight, Globe, X, Instagram, Github, Mail, Send  } from 'lucide';
+import { createIcons, Menu, ArrowRight, Globe, X, Instagram, Github, Mail, Send, Copyright  } from 'lucide';
 export const lucideIconsInit = () => {
   createIcons({
     icons: {
@@ -10,7 +10,8 @@ export const lucideIconsInit = () => {
       X,
       Instagram,
       Mail,
-      Send
+      Send,
+      Copyright,
     },
   });
 };
