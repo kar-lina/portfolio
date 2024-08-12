@@ -31,6 +31,8 @@ import { zip } from "./config/gulp-tasks/zip.js";
 import { sprite } from "./config/gulp-tasks/sprite.js";
 import { gitignore } from "./config/gulp-tasks/gitignore.js";
 import { otfToTtf, ttfToWoff2, woff2Copy, fontsStyle } from "./config/gulp-tasks/fonts.js";
+import { json } from './config/gulp-tasks/json.js';
+
 
 // Послідовна обробка шрифтів
 const fonts = gulp.series(reset, function (done) {
@@ -47,9 +49,9 @@ const devTasks = gulp.series(fonts, gitignore);
 // Порядок виконання завдань для режиму продакшн
 let buildTasks;
 if (process.argv.includes('--nowebp')) {
-	buildTasks = gulp.series(fonts, jsDev, js, gulp.parallel(html, css, gulp.parallel(WebP, imagesOptimize, copySvg), gitignore));
+	buildTasks = gulp.series(fonts, jsDev, js, json, gulp.parallel(html, css, gulp.parallel(WebP, imagesOptimize, copySvg), gitignore));
 } else {
-	buildTasks = gulp.series(fonts, jsDev, js, gulp.parallel(html, css, gulp.parallel(WebP, copySvg), gitignore));
+	buildTasks = gulp.series(fonts, jsDev, js,json, gulp.parallel(html, css, gulp.parallel(WebP, copySvg), gitignore));
 }
 
 
@@ -62,6 +64,7 @@ export { fonts }
 export { sprite }
 export { ftp }
 export { zip }
+export { json };
 
 // Побудова сценаріїв виконання завдань
 const development = devTasks;

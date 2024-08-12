@@ -1,0 +1,190 @@
+.experience {
+  background: $secondaryBgColor;
+  &__container {
+  }
+
+  &__body {
+    max-width: toRem(800);
+    margin: 0 auto;
+  }
+
+  &__timeline {
+    display: flex;
+    flex-direction: column;
+    @include adaptiveValue('gap', 60, 24);
+  }
+}
+.timeline-experience {
+  border-left: 2px solid $secondaryGrayColor;
+  padding: 0 toRem(20);
+   @media (max-width: $tablet) {
+      padding: 0 toRem(10);
+    }
+  &__item {
+    
+    display: flex;
+    justify-content: space-between;
+    padding: toRem(20);
+    transition: box-shadow 0.3s ease 0s;
+    border-radius: 12px;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    @include adaptiveValue('gap', 60, 24);
+    &._template{
+      // visibility: hidden;
+      display: none;
+    }
+    &::before {
+      content: '';
+      width: toRem(20);
+      height: toRem(20);
+      transform: rotate(45deg) translate(-50%, -50%);
+      position: absolute;
+      top: 40px;
+      left: -10px;
+      // transform: ;
+      z-index: 2;
+      background: $secondaryBgColor;
+    }
+    @media (max-width: $tablet) {
+      flex-direction: column;
+      padding: toRem(10);
+      &::before {
+        display: none;
+      }
+    }
+    @media (any-hover: hover) {
+      &:hover {
+        box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.15);
+        .timeline-experience__header {
+          color: $primaryColor;
+        }
+        .timeline-experience__dot {
+          background-color: $primaryColor;
+        }
+        .year-experience__title::after {
+          background-color: $primaryColor;
+        }
+      }
+    }
+  }
+
+  &__year {
+    flex: 0 0 toRem(120);
+    @media (max-width: $tablet) {
+      flex: 0 0 auto;
+    }
+  }
+
+  &__content {
+  }
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: toRem(10);
+    color: $accentColor;
+    transition: color 0.3s ease 0s;
+    font-weight: 600;
+    @include adaptiveValue('margin-bottom', 20, 16);
+    @media (max-width: $tablet) {
+      display: block;
+    }
+  }
+  &__dot {
+    width: toRem(5);
+    height: toRem(5);
+    border-radius: 50%;
+    background-color: $accentColor;
+    @media (max-width: $tablet) {
+      display: none;
+    }
+  }
+
+  &__title {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: toRem(18);
+    @media (min-width: $tablet) {
+      font-size: toRem(24);
+    }
+    @media (max-width: $tablet) {
+      margin-bottom: toRem(10);
+    }
+  }
+
+  &__position {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: toRem(16);
+    @media (min-width: $tablet) {
+      font-size: toRem(24);
+    }
+  }
+
+  &__description {
+    @include adaptiveValue('font-size', 24, 16);
+    @include adaptiveValue('margin-bottom', 20, 16);
+  }
+
+  &__skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: toRem(10);
+    &:not(:last-child) {
+      margin-bottom: toEm(20, 14);
+    }
+  }
+
+  &__skill {
+    padding: toRem(5) toRem(10);
+    // background-color: $secondaryGrayColor;
+    border: 1px solid $accentColor;
+    color: $accentColor;
+    border-radius: 12px;
+    @include adaptiveValue('font-size', 14, 10);
+  }
+
+  &__link {
+    text-decoration: none;
+    border-bottom: none;
+    display: flex;
+    align-items: center;
+    gap: toRem(10);
+    transition: color 0.3s ease 0s;
+    &:hover {
+      color: $primaryColor;
+    }
+  }
+}
+
+.year-experience {
+  position: relative;
+  &__title {
+    color: $grayColor;
+    font-weight: 400;
+    position: relative;
+    @include adaptiveValue('font-size', 20, 16);
+
+    &::after {
+      content: '';
+      width: toRem(15);
+      height: toRem(15);
+      border-radius: 50%;
+      background-color: #999;
+      position: absolute;
+      top: 50%;
+      left: -41px;
+      transform: translate(-50%, -50%);
+      transition: background-color 0.3s ease 0s;
+    }
+    @media (max-width: $tablet) {
+      &::after {
+         top: 50%;
+      left: -21px;
+      }
+    }
+  }
+}

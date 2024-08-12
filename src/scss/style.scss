@@ -16,8 +16,12 @@ $fontSize: toRem(16); // де 14(px) - розмір шрифту за замов
 
 
 $textColor: #000; // Колір шрифту за замовчуванням
-$primaryColor: #fb6f92;
-$bgColor: #ffc2d1;
+$secondaryTextColor: #333;
+$grayColor: #666;
+$secondaryGrayColor: #aaa;
+$primaryColor: #f6a3db;
+$bgColor: #f3c9e8;
+$secondaryBgColor: #f1daeb;
 $accentColor: #8e7dbe;
 
 // Мінімальна ширина сторінки
@@ -115,3 +119,5 @@ body {
 @import 'footer';
 @import 'home';
 @import 'components/hero';
+@import 'components/about';
+@import 'components/experience';

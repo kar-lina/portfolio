@@ -1,0 +1,66 @@
+.about {
+  // height: 100vh;
+  background-color: $bgColor;
+  &__container {
+  }
+
+  &__body {
+  }
+
+  &__header {
+    width: 100%;
+  @include adaptiveValue('margin-bottom', 56, 30);
+  }
+
+  &__title {
+    &:not(:last-child) {
+      margin-bottom: toEm(44, 56);
+    }
+  }
+  &__description {
+    margin-bottom: toEm(44, 56);
+  }
+
+  &__content {
+    display: flex;
+    @include adaptiveValue('gap', 60, 20);
+    @media (max-width:$tablet){
+      flex-direction: column;
+    }
+  }
+
+  &__text {
+    flex: 0 0 50%;
+    @include adaptiveValue('font-size', 20, 16);
+  }
+
+  &__subtitle {
+    @include adaptiveValue('margin-bottom', 32, 20);
+  }
+
+  &__btn {
+    margin-top: toRem(30);
+  }
+
+  &__skills {
+  }
+}
+.skills {
+ 
+  &__subtitle {
+    @include adaptiveValue('margin-bottom', 32, 20);
+  }
+  &__list {
+     display: flex;
+  flex-wrap: wrap;
+  gap: toRem(16);
+
+  }
+  &__label {
+    background: #dfd8d8;
+    padding: toRem(8) toRem(16);
+    border-radius: 12px;
+    font-weight: bold;
+    color: $secondaryTextColor;
+  }
+}

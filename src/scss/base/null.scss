@@ -63,8 +63,20 @@ option {
 }
 a {
 	display: inline-block;
-	color: inherit;
-	text-decoration: none;
+	color: $accentColor;
+	transition: all 0.3s ease 0s;
+	border-bottom: 1px solid $accentColor;
+	@media (any-hover: hover){
+		&:hover{
+			border-color: transparent;
+		}
+	}
+
+	// text-decoration: none;
+}
+p {
+	color: $secondaryTextColor;
+	&:not(:last-child) {margin-bottom: toRem(10)}
 }
 ul li {
 	list-style: none;

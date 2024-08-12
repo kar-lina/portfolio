@@ -1,1 +1,67 @@
-// Заголовки, загальні БЕМ блоки та інше...
+// Заголовки,  БЕМ блоки ...
+.section__page {
+  // height: 100vh;
+  background-color: $bgColor;
+  @include adaptiveValue('padding-top', 80, 40);
+  @include adaptiveValue('padding-bottom', 80, 40);
+}
+._title {
+  display: block;
+  position: relative;
+  text-align: center;
+  font-weight: bold;
+  line-height: 160%;
+  @include adaptiveValue('font-size', 56, 32);
+  &:not(:last-child) {
+    margin-bottom: toEm(44, 56);
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: calc(100% + 1rem);
+    height: 5px;
+    width: 3rem;
+    background: $accentColor;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 5px;
+  }
+}
+
+._description {
+  text-align: center;
+  line-height: 120%;
+  max-width: 800px;
+  margin: 0 auto;
+  color: $secondaryTextColor;
+  margin-bottom: toEm(44, 56);
+  @include adaptiveValue('font-size', 24, 18);
+}
+
+._subtitle {
+  font-weight: bold;
+  line-height: 120%;
+  @include adaptiveValue('font-size', 42, 24);
+}
+
+._btn {
+  background: $primaryColor;
+  text-transform: uppercase;
+  padding: toRem(12) toRem(30);
+  letter-spacing: 1px;
+  display: inline-block;
+  font-weight: 700;
+  border-radius: 5px;
+  box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s;
+  color: #fff;
+  @media (any-hover: hover) {
+    &:hover {
+      transform: translateY(-5px);
+    }
+  }
+}
+._template {
+  display: none !important;
+}
