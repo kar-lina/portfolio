@@ -1,5 +1,6 @@
 import { throttle } from './functions.js';
 import { server } from './server.js';
+
 // Следующая страница
 let nextPage = 2;
 
@@ -24,21 +25,24 @@ function checkPosition() {
 
   if (position >= threshold) {
     // Вызываем действие
-    fetchSkills().catch(error => console.log(error));
+    fetchSkills().catch((error) => console.log(error));
   }
 }
+
 function appendSkill(skillData) {
   // Если данных нет, ничего не делаем
   if (!skillData) return;
 
   // Храним ссылку на элемент
-  const main = document.querySelector('.experience__timeline');
+  const skillsContainer = document.querySelector('.experience__timeline');
 
   // Превращает данные в HTML-элемент
   const skillNode = composeSkillItem(skillData);
 
   // Добавляем созданный элемент в <main>
-  main.append(skillNode);
+  skillsContainer.appendChild(skillNode);
+  // Init animation
+  skillAnimationInit(skillNode);
 }
 function composeSkillItem(skillData) {
   // Если ничего не передано, ничего не возвращаем
@@ -46,18 +50,18 @@ function composeSkillItem(skillData) {
 
   // Обращаемся к старому шаблону
   const template = document.querySelector('#timeline-experience__template');
-  
-  // Клонируем
-  console.log('template', template.content);
-  const skill = template.content
 
+  // Клонируем
+  const skill = template.content.children[0].cloneNode(true);
   // Получаем нужную информацию
   const { year, position, company, description, skills, link } = skillData;
 
+
   // Добавляем соответствующие тексты и числа
   skill.querySelector('.year-experience__title').innerText = year.start + ' - ' + year.end;
-  skill.querySelector('.timeline-experience__title').innerText = company;
-  skill.querySelector('.timeline-experience__position').innerText = position;
+  skill.querySelector('.timeline-experience__title>span').innerText = company;
+  skill.querySelector('.timeline-experience__position>span').innerText = position;
+
   skill.querySelector('.timeline-experience__description').innerText = description;
   if (skills && skills.length) {
     skills.forEach((item) => {
@@ -67,9 +71,20 @@ function composeSkillItem(skillData) {
       skill.querySelector('.timeline-experience__skills')?.append(div);
     });
   }
-  skill.querySelector('.timeline-experience__link a').href = link?? '';
+  skill.querySelector('.timeline-experience__link a').href = link ?? '';
+  
   // Возвращаем созданный элемент
   return skill;
+}
+function skillAnimationInit(skill) {
+  const startAnimation = (entries) => {
+    if (entries[0].isIntersecting) {
+      skill.classList.add('_visible');
+    }
+  };
+  const observer = new IntersectionObserver(throttle(startAnimation, 200));
+  const options = { root: null, rootMargin: '0px', threshold: 1 };
+  observer.observe(skill, options);
 }
 
 async function fetchSkills() {
@@ -80,8 +95,7 @@ async function fetchSkills() {
   isLoading = true;
 
   const { skills, next } = await server.loadSkills(nextPage);
-  console.log('skills', skills);
-  
+
   skills.forEach(appendSkill);
 
   // Следующая страница

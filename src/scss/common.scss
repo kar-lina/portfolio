@@ -13,7 +13,7 @@
   line-height: 160%;
   @include adaptiveValue('font-size', 56, 32);
   &:not(:last-child) {
-    margin-bottom: toEm(44, 56);
+    @include adaptiveValue('margin-bottom', 44, 32);
   }
 
   &:after {
@@ -35,8 +35,8 @@
   max-width: 800px;
   margin: 0 auto;
   color: $secondaryTextColor;
-  margin-bottom: toEm(44, 56);
   @include adaptiveValue('font-size', 24, 18);
+  @include adaptiveValue('margin-bottom', 44, 24);
 }
 
 ._subtitle {
@@ -56,10 +56,19 @@
   box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.15);
   transition: transform 0.3s;
   color: #fff;
+  @include adaptiveValue("font-size", 18, 12);
   @media (any-hover: hover) {
     &:hover {
       transform: translateY(-5px);
     }
+  }
+  @media (any-hover: none) {
+    &:touch {
+      box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0);
+    }
+  }
+  @media (max-width: $mobile) {
+    padding: toRem(10) toRem(24);
   }
 }
 ._template {

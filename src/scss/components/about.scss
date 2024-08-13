@@ -12,18 +12,10 @@
   @include adaptiveValue('margin-bottom', 56, 30);
   }
 
-  &__title {
-    &:not(:last-child) {
-      margin-bottom: toEm(44, 56);
-    }
-  }
-  &__description {
-    margin-bottom: toEm(44, 56);
-  }
 
   &__content {
     display: flex;
-    @include adaptiveValue('gap', 60, 20);
+    @include adaptiveValue('gap', 60, 30);
     @media (max-width:$tablet){
       flex-direction: column;
     }
@@ -39,7 +31,7 @@
   }
 
   &__btn {
-    margin-top: toRem(30);
+    @include adaptiveValue('margin-top', 32, 20);
   }
 
   &__skills {

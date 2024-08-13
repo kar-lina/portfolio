@@ -3,6 +3,7 @@
 import { headerScroll } from './header-scroll.js';
 import { lucideIconsInit } from './icons.js';
 import { burgerMenuInit } from './mobile-menu.js';
+import { navigationInit } from './navigataion.js';
 import { skillsLoadInit } from './skills-load.js';
 
 // Подключение иконок
@@ -17,9 +18,10 @@ function documentActions(e) {
   //   e.preventDefault();
   // }
 }
-window.onload = function () {
+window.onload =  function () {
   document.addEventListener('click', documentActions);
   burgerMenuInit();
   headerScroll();
   skillsLoadInit();
+  navigationInit();
 };

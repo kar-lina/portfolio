@@ -16,25 +16,31 @@
 }
 .timeline-experience {
   border-left: 2px solid $secondaryGrayColor;
-  padding: 0 toRem(20);
-   @media (max-width: $tablet) {
-      padding: 0 toRem(10);
-    }
+  padding: 0 0 0 toRem(20);
+  @media (max-width: $tablet) {
+    padding: 0 0 0 toRem(10);
+  }
   &__item {
-    
     display: flex;
     justify-content: space-between;
     padding: toRem(20);
+    margin-left: 10px;
+
     transition: box-shadow 0.3s ease 0s;
     border-radius: 12px;
     cursor: pointer;
     position: relative;
     z-index: 1;
-    @include adaptiveValue('gap', 60, 24);
-    &._template{
-      // visibility: hidden;
-      display: none;
+    transition:
+      box-shadow 0.3s ease 0s,
+      transform 1s ease 0s;
+    transform: translateX(100%);
+    opacity: 0;
+    &._visible {
+      transform: translateX(0);
+      opacity: 1;
     }
+    @include adaptiveValue('gap', 60, 24);
     &::before {
       content: '';
       width: toRem(20);
@@ -43,13 +49,13 @@
       position: absolute;
       top: 40px;
       left: -10px;
-      // transform: ;
       z-index: 2;
       background: $secondaryBgColor;
     }
     @media (max-width: $tablet) {
       flex-direction: column;
       padding: toRem(10);
+
       &::before {
         display: none;
       }
@@ -176,14 +182,14 @@
       background-color: #999;
       position: absolute;
       top: 50%;
-      left: -41px;
+      left: -51px;
       transform: translate(-50%, -50%);
       transition: background-color 0.3s ease 0s;
     }
     @media (max-width: $tablet) {
       &::after {
-         top: 50%;
-      left: -21px;
+        top: 50%;
+        left: -31px;
       }
     }
   }

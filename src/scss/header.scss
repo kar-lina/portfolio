@@ -84,8 +84,9 @@
   &__item {
     text-transform: uppercase;
     font-weight: 600;
-    transition: color 0.3s ease 0s;
-    @media (any-hover: hover) {
+    transition:
+      color 0.3s ease 0s;
+          @media (any-hover: hover) {
       &:hover {
         color: $primaryColor;
       }
@@ -94,6 +95,11 @@
   }
 
   &__link {
+    border-bottom: none;
+    transition: border-bottom 0.3s ease 0s;
+    &._active {
+      border-bottom: 1px solid $accentColor;
+    }
   }
 
   &__burger {

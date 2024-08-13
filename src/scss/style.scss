@@ -40,7 +40,12 @@ $responsiveType: 1;
 
 @import 'base/null';
 @import 'libs/tailwind';
-
+@import 'base';
+@import 'common';
+html {
+  scroll-behavior: smooth;
+  // @extend %smooth-scroll;
+}
 body {
   // scrollbar-gutter: stable;
   // Скролл заблоковано
@@ -113,8 +118,7 @@ body {
   }
 }
 
-@import 'base';
-@import 'common';
+
 @import 'header';
 @import 'footer';
 @import 'home';
