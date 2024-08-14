@@ -1,0 +1,53 @@
+.projects {
+  &__content {
+    @include adaptiveValue("margin-top", 80, 40);
+  }
+
+  &__item {
+  }
+}
+.project {
+  display: flex;
+  justify-content: space-between;
+  gap: toRem(40);
+  &:not(:last-child) { @include adaptiveValue("margin-bottom", 60, 20);}
+  @media (max-width: $tablet) {
+    flex-direction: column;
+      gap: toRem(20);
+
+  }
+  &__image {
+    flex: 1 0 600px;
+    @media (max-width: $tablet) {
+      flex: 1 0 auto;
+    }
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      margin: auto;
+    }
+  }
+
+  &__info {
+  }
+  &__title {
+    font-weight: 700;
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
+    @include adaptiveValue('font-size', 36, 28);
+  }
+
+  &__text {
+    font-weight: 500;
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
+    @include adaptiveValue('font-size', 22, 14);
+  }
+
+  &__link {
+    border-bottom: none;
+  }
+}

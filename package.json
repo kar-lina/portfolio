@@ -59,16 +59,14 @@
 		"gulp-zip": "latest",
 		"html-webpack-plugin": "latest",
 		"inputmask": "latest",
-		"js-datepicker": "latest",
-		"lightgallery": "latest",
+
 		"load-plugins": "latest",
 		"mini-css-extract-plugin": "2.4.7",
 		"nouislider": "latest",
 		"postcss": "latest",
 		"postcss-loader": "latest",
 		"postcss-preset-env": "latest",
-		"pug": "latest",
-		"pug-loader": "latest",
+
 		"sass": "latest",
 		"sass-loader": "latest",
 		"smooth-scroll": "latest",
@@ -77,7 +75,7 @@
 		"swiper": "latest",
 		"tailwindcss": "latest",
 		"terser-webpack-plugin": "latest",
-		"tippy.js": "latest",
+
 		"transform-runtime": "0.0.0",
 		"vanilla-lazyload": "latest",
 		"vinyl-ftp": "latest",

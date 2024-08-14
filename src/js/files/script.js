@@ -4,6 +4,7 @@ import { headerScroll } from './header-scroll.js';
 import { lucideIconsInit } from './icons.js';
 import { burgerMenuInit } from './mobile-menu.js';
 import { navigationInit } from './navigataion.js';
+import { loadProjectsInit } from './projects.js';
 import { skillsLoadInit } from './skills-load.js';
 
 // Подключение иконок
@@ -24,4 +25,5 @@ window.onload =  function () {
   headerScroll();
   skillsLoadInit();
   navigationInit();
+  loadProjectsInit();
 };
