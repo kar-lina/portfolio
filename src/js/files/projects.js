@@ -34,7 +34,7 @@ function composeProject(project) {
   </div>`;
 
   const projectImage = `<div class="project__image">
-            <div class="relative mx-auto border-gray-800 dark:border-gray-800 bg-gray-800 border-[8px] rounded-t-xl h-[172px] max-w-[301px]  md:h-[294px] md:max-w-[512px]">
+            <div class="relative mx-auto border-gray-800 dark:border-gray-800 bg-gray-800 border-[8px] rounded-t-xl h-[150px] sm:h-[172px] max-w-[270px] sm:max-w-[301px]  md:h-[294px] md:max-w-[512px]">
               <div class="rounded-lg overflow-hidden h-[156px] md:h-[278px] bg-white dark:bg-gray-800">
                 ${projectImg}
               </div>

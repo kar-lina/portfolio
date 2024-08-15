@@ -10,7 +10,7 @@
   display: flex;
   justify-content: space-between;
   gap: toRem(40);
-  &:not(:last-child) { @include adaptiveValue("margin-bottom", 60, 20);}
+  &:not(:last-child) { @include adaptiveValue("margin-bottom", 60, 40);}
   @media (max-width: $tablet) {
     flex-direction: column;
       gap: toRem(20);
@@ -34,9 +34,9 @@
   &__title {
     font-weight: 700;
     &:not(:last-child) {
-      margin-bottom: 20px;
+      @include adaptiveValue('margin-bottom', 20, 8);
     }
-    @include adaptiveValue('font-size', 36, 28);
+    @include adaptiveValue('font-size', 36, 22);
   }
 
   &__text {

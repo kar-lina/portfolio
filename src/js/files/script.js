@@ -1,9 +1,11 @@
 // Підключення функціоналу "Чертоги Фрілансера"
 
+import { formValidation } from './form-validation.js';
 import { headerScroll } from './header-scroll.js';
 import { lucideIconsInit } from './icons.js';
 import { burgerMenuInit } from './mobile-menu.js';
 import { navigationInit } from './navigataion.js';
+import { popupInit } from './popup.js';
 import { loadProjectsInit } from './projects.js';
 import { skillsLoadInit } from './skills-load.js';
 
@@ -26,4 +28,6 @@ window.onload =  function () {
   skillsLoadInit();
   navigationInit();
   loadProjectsInit();
+  formValidation();
+  popupInit();
 };

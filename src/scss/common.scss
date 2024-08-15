@@ -56,7 +56,7 @@
   box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.15);
   transition: transform 0.3s;
   color: #fff;
-  @include adaptiveValue("font-size", 18, 12);
+  @include adaptiveValue('font-size', 18, 12);
   @media (any-hover: hover) {
     &:hover {
       transform: translateY(-5px);
@@ -73,4 +73,32 @@
 }
 ._template {
   display: none !important;
+}
+
+.form {
+
+  &__text-field {
+    &:not(:last-child) {@include adaptiveValue("margin-bottom", 40, 16);}
+  }
+
+  &__label {
+    @apply block mb-2 text-sm font-medium text-gray-900;
+  }
+
+  &__error {
+    @apply text-red-700 text-xs mt-2;
+  }
+
+  &__button {
+    text-align: right;
+  }
+}
+.input {
+  @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5 focus:ring-pink-500 focus:border-pink-500;
+}
+.input._error, .textarea._error {
+  @apply  border border-red-500;
+}
+.textarea {
+  @apply block p-2.5 w-full min-h-28 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-pink-500 focus:border-pink-500  ;
 }

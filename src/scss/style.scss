@@ -39,6 +39,7 @@ $mobileSmall: toEm(479.98); // Телефони S
 $responsiveType: 1;
 
 @import 'base/null';
+@import 'base/popup';
 @import 'libs/tailwind';
 @import 'base';
 @import 'common';
@@ -126,3 +127,4 @@ body {
 @import 'components/about';
 @import 'components/experience';
 @import 'components/projects';
+@import 'components/contact';

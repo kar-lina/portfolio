@@ -1,0 +1,30 @@
+<section id="contact" class="contact section__page">
+  <div class="contact__container">
+    <div class="contact__body">
+      <div class="contact__header">
+        <h2 class="contact__title _title">Contact</h2>
+        <p class="contact__description _description">Feel free to Contact me by submitting the form below and I will get back to you as soon as possible</p>
+      </div>
+      <div class="contact__content">
+        <form data-validation novalidate class="contact__form">
+          <div class="form__text-field">
+            <label for="name" class="form__label">Name</label>
+            <input required id="name" name="name" type="text" class="input" data-error="Name is required" />
+            <span class="form__error"></span>
+          </div>
+          <div class="form__text-field">
+            <label for="email" class="form__label">Email</label>
+            <input required id="email" name="name" type="email" class="input" data-error="Email is required" />
+            <span class="form__error"></span>
+          </div>
+          <div class="form__text-field">
+            <label for="msg" class="form__label">Message</label>
+            <textarea required id="msg" name="msg" class="textarea input" data-error="Message is required"></textarea>
+            <span class="form__error"></span>
+          </div>
+          <button type="submit" class="_btn form__button">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

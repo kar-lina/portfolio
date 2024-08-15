@@ -1,5 +1,41 @@
 (() => {
     "use strict";
+    function formValidation() {
+        const forms = document.querySelectorAll("form[data-validation]");
+        forms.forEach((form => {
+            validateForm(form);
+            const inputs = form.querySelectorAll("input");
+            inputs.forEach((input => {
+                input.addEventListener("change", (() => {
+                    checkInputValidity(input);
+                }));
+            }));
+        }));
+    }
+    function validateForm(form) {
+        form.addEventListener("submit", (e => {
+            e.preventDefault();
+            const inputs = form.querySelectorAll("input");
+            let isValid = true;
+            inputs.forEach((input => {
+                checkInputValidity(input);
+            }));
+            if (isValid) form.submit();
+        }));
+    }
+    function checkInputValidity(input) {
+        let allValid = true;
+        const error = input.parentElement.querySelector(".form__error");
+        if (input.checkValidity()) {
+            error.textContent = "";
+            input.classList.remove("_error");
+        } else {
+            error.textContent = input.dataset.error ?? "Invalid Input";
+            input.classList.add("_error");
+            allValid = false;
+        }
+        return allValid;
+    }
     function headerScroll() {
         const headerEl = document.querySelector(".header");
         const callback = (entries, observer) => {
@@ -238,38 +274,6 @@
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-    const BriefcaseBusiness = [ "svg", defaultAttributes, [ [ "path", {
-        d: "M12 12h.01"
-    } ], [ "path", {
-        d: "M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"
-    } ], [ "path", {
-        d: "M22 13a18.15 18.15 0 0 1-20 0"
-    } ], [ "rect", {
-        width: "20",
-        height: "14",
-        x: "2",
-        y: "6",
-        rx: "2"
-    } ] ] ];
-    /**
- * @license lucide v0.424.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-    const MapPin = [ "svg", defaultAttributes, [ [ "path", {
-        d: "M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"
-    } ], [ "circle", {
-        cx: "12",
-        cy: "10",
-        r: "3"
-    } ] ] ];
-    /**
- * @license lucide v0.424.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
     const Link = [ "svg", defaultAttributes, [ [ "path", {
         d: "M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"
     } ], [ "path", {
@@ -286,8 +290,6 @@
                 Mail,
                 Send,
                 Copyright,
-                BriefcaseBusiness,
-                MapPin,
                 Link
             }
         });
@@ -299,14 +301,18 @@
             menu.classList.toggle("open");
         }));
     };
-    function throttle(callback, delay) {
-        let lastCall = 0;
-        return function(...args) {
-            const now = new Date;
-            if (now - lastCall < delay) return;
-            lastCall = now;
-            callback(...args);
-        };
+    function navigationInit() {
+        const sections = document.querySelectorAll("section[id]");
+        window.addEventListener("scroll", navHighlighter);
+        function navHighlighter() {
+            let scrollY = window.scrollY;
+            sections.forEach((current => {
+                const sectionHeight = current.offsetHeight;
+                const sectionTop = current.offsetTop - 50;
+                let sectionId = current.getAttribute("id");
+                if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) document.querySelector("header .menu__item a[href*=" + sectionId + "]").classList.add("_active"); else document.querySelector("header .menu__item a[href*=" + sectionId + "]").classList.remove("_active");
+            }));
+        }
     }
     const server = {
         async loadSkills(page = 1) {
@@ -317,21 +323,67 @@
             });
             if (!response.ok) return Promise.reject(new Error(`Could not load ${file}`));
             let result = await response.json();
-            if (result?.products) {
-                const products = result.products.slice(SHOW_ELEMENTS * (page - 1), SHOW_ELEMENTS * page);
-                const finished = SHOW_ELEMENTS * page >= result.products.length;
+            if (result?.skills) {
+                const skills = result.skills.slice(SHOW_ELEMENTS * (page - 1), SHOW_ELEMENTS * page);
+                const finished = SHOW_ELEMENTS * page >= result.skills.length;
                 const next = finished ? null : page + 1;
                 return new Promise((resolve => {
                     setTimeout((() => {
                         resolve({
-                            products,
+                            skills,
                             next
                         });
                     }), 150);
                 }));
             }
+        },
+        async loadProjects() {
+            const file = "json/projects.json";
+            let response = await fetch(file, {
+                method: "GET"
+            });
+            if (!response.ok) return new Error(`Could not load ${file}`);
+            let result = await response.json();
+            if (result?.projects) return {
+                projects: result?.projects
+            };
         }
     };
+    const loadProjectsInit = async () => {
+        try {
+            const {projects} = await server.loadProjects();
+            console.log("projects", projects);
+            if (!projects?.length) return;
+            const projectConainer = document.querySelector(".projects__content");
+            projects.forEach((project => {
+                const projectNode = composeProject(project);
+                projectConainer.insertAdjacentHTML("beforeend", projectNode);
+            }));
+        } catch (error) {
+            console.log("error", error);
+        }
+    };
+    function composeProject(project) {
+        const {name, description, tools, img, link} = project;
+        const projectImg = img ? `<img loading="lazy" src="${img}" alt="${name}" />` : `<img loading="lazy" src="/img/projects/mock.jpg" alt="${name}" />`;
+        const projectTitle = name ? `<h3 class="project__title">${name}</h3>` : "";
+        const projectDescription = description ? `<p class="project__text">${description}</p>` : "";
+        const projectTools = tools ? `<p class="project__text">${tools}</p>` : "";
+        const projectLink = link ? `<a href="${link}" class="project__link _btn">Learn more</a>` : "";
+        const projectInfo = `<div class="project__info">\n    ${projectTitle}\n    ${projectDescription}\n    ${projectTools}\n    ${projectLink}\n  </div>`;
+        const projectImage = `<div class="project__image">\n            <div class="relative mx-auto border-gray-800 dark:border-gray-800 bg-gray-800 border-[8px] rounded-t-xl h-[172px] max-w-[301px]  md:h-[294px] md:max-w-[512px]">\n              <div class="rounded-lg overflow-hidden h-[156px] md:h-[278px] bg-white dark:bg-gray-800">\n                ${projectImg}\n              </div>\n            </div>\n            <div class="relative mx-auto bg-gray-900 dark:bg-gray-700 rounded-b-xl rounded-t-sm h-[17px] max-w-[351px]  md:h-[21px] md:max-w-[597px]">\n              <div class="absolute left-1/2 top-0 -translate-x-1/2 rounded-b-xl w-[56px] h-[5px] md:w-[96px] md:h-[8px] bg-gray-800"></div>\n            </div>\n          </div>`;
+        const projectElement = `<div class="projects__item project">\n    ${projectImage}\n    ${projectInfo}\n  </div>`;
+        return projectElement;
+    }
+    function throttle(callback, delay) {
+        let lastCall = 0;
+        return function(...args) {
+            const now = new Date;
+            if (now - lastCall < delay) return;
+            lastCall = now;
+            callback(...args);
+        };
+    }
     let nextPage = 2;
     let isLoading = false;
     let shouldLoad = true;
@@ -345,18 +397,19 @@
     }
     function appendSkill(skillData) {
         if (!skillData) return;
-        const main = document.querySelector(".experience__timeline");
+        const skillsContainer = document.querySelector(".experience__timeline");
         const skillNode = composeSkillItem(skillData);
-        main.append(skillNode);
+        skillsContainer.appendChild(skillNode);
+        skillAnimationInit(skillNode);
     }
     function composeSkillItem(skillData) {
         if (!skillData) return;
-        const template = document.querySelector(".timeline-experience__item");
-        const skill = template.content.cloneNode(true);
+        const template = document.querySelector("#timeline-experience__template");
+        const skill = template.content.children[0].cloneNode(true);
         const {year, position, company, description, skills, link} = skillData;
         skill.querySelector(".year-experience__title").innerText = year.start + " - " + year.end;
-        skill.querySelector(".timeline-experience__title").innerText = company;
-        skill.querySelector(".timeline-experience__position").innerText = position;
+        skill.querySelector(".timeline-experience__title>span").innerText = company;
+        skill.querySelector(".timeline-experience__position>span").innerText = position;
         skill.querySelector(".timeline-experience__description").innerText = description;
         if (skills && skills.length) skills.forEach((item => {
             const div = document.createElement("div");
@@ -366,6 +419,18 @@
         }));
         skill.querySelector(".timeline-experience__link a").href = link ?? "";
         return skill;
+    }
+    function skillAnimationInit(skill) {
+        const startAnimation = entries => {
+            if (entries[0].isIntersecting) skill.classList.add("_visible");
+        };
+        const observer = new IntersectionObserver(throttle(startAnimation, 200));
+        const options = {
+            root: null,
+            rootMargin: "0px",
+            threshold: 1
+        };
+        observer.observe(skill, options);
     }
     async function fetchSkills() {
         if (isLoading || !shouldLoad) return;
@@ -389,5 +454,8 @@
         burgerMenuInit();
         headerScroll();
         skillsLoadInit();
+        navigationInit();
+        loadProjectsInit();
+        formValidation();
     };
 })();

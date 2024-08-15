@@ -1,0 +1,31 @@
+.contact {
+  &__container {
+  }
+
+  &__body {
+  }
+
+  &__header {
+  }
+
+  &__title {
+  }
+
+  &__description {
+  }
+
+  &__content {
+    @include adaptiveValue('padding', 20, 12);
+  }
+}
+.contact {
+  &__form {
+    margin: 0 auto;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px;
+    max-width: toRem(800);
+    background-color: #fff;
+    border-radius: 12px;
+    height: 70%;
+    @include adaptiveValue('padding', 40, 15);
+  }
+}
