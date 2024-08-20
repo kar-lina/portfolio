@@ -53,15 +53,22 @@
       "name": "Next Pizza",
       "description": "The application is a clone of Dodo Pizza with a basket, filtering, order processing, authorization and admin panel.",
       "tools": "Frontend - TypeScript, React.js + Next.js + Zustand + Tailwind. Backend - Next.js, Prisma.",
-      "img": "img/projects/auth-app.png",
-      "link": "https://github.com/kar-lina/auth-app"
+      "img": "img/projects/next-pizza.png",
+      "link": "https://github.com/kar-lina/next-pizza"
     },
     {
       "name": "Chekhov Orchad",
       "description": "The project for the company's clients is a multi-page website for the Chekhov Museum Reserve with non-standard animation, a version for the visually impaired and language localization.",
-      "tools": "Frontend - TypeScript, Vue.js + Nuxt.js + Pinia + Tailwind. Backend - Next.js, Prisma.",
+      "tools": "Frontend - TypeScript, Vue.js + Nuxt.js + Pinia + Tailwind. Backend - модуль RestApi для Bitrix.",
       "img": "img/projects/checkhov.png",
-      "link": "https://github.com/kar-lina/auth-app"
+      "link": "https://chekhovmuseum.com"
+    },
+    {
+      "name": "Technika Pro",
+      "description": "Multi-page site for medical equipment suppliers, with multi-level menu, breadcrumbs, filtering and modal system.",
+      "tools": "Frontend - JavaScript, HTML (FileIncludes) + SCSS. Webpack, Gulp.",
+      "img": "img/projects/tech-pro.png",
+      "link": "https://www.technika-pro.ru"
     }
   ]
 }

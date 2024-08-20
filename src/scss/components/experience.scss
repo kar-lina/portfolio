@@ -102,6 +102,7 @@
     height: toRem(5);
     border-radius: 50%;
     background-color: $accentColor;
+    flex: 0 0 toRem(5);
     @media (max-width: $tablet) {
       display: none;
     }

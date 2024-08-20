@@ -9,17 +9,17 @@
         <form data-validation novalidate class="contact__form">
           <div class="form__text-field">
             <label for="name" class="form__label">Name</label>
-            <input required id="name" name="name" type="text" class="input" data-error="Name is required" />
+            <input required id="name" name="name" type="text" class="form__field" data-error="Name is required" />
             <span class="form__error"></span>
           </div>
           <div class="form__text-field">
             <label for="email" class="form__label">Email</label>
-            <input required id="email" name="name" type="email" class="input" data-error="Email is required" />
+            <input required id="email" name="name" type="email" class="form__field" data-error="Email is required" />
             <span class="form__error"></span>
           </div>
           <div class="form__text-field">
             <label for="msg" class="form__label">Message</label>
-            <textarea required id="msg" name="msg" class="textarea input" data-error="Message is required"></textarea>
+            <textarea required id="msg" name="msg" class="form__field textarea" data-error="Message is required"></textarea>
             <span class="form__error"></span>
           </div>
           <button type="submit" class="_btn form__button">Submit</button>

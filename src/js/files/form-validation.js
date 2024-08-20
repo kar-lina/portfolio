@@ -4,20 +4,20 @@ export function formValidation() {
   const forms = document.querySelectorAll('form[data-validation]');
   forms.forEach((form) => {
     validateForm(form);
-    const inputs = form.querySelectorAll('input');
-    inputs.forEach((input) => {
+    const fieslds = form.querySelectorAll('.form__field');
+    fieslds.forEach((input) => {
       input.addEventListener('change', () => {
         checkInputValidity(input);
       });
-    })
+    });
   });
 }
 function validateForm(form) {
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    const inputs = form.querySelectorAll('input');
+    const fieslds = form.querySelectorAll('.form__field');
     let validityOfInputs = [];
-    inputs.forEach((input) => {
+    fieslds.forEach((input) => {
       validityOfInputs.push(checkInputValidity(input));
     });
     if (!validityOfInputs.includes(false)) {
@@ -29,7 +29,6 @@ function validateForm(form) {
 }
 
 function checkInputValidity(input) {
- 
   const error = input.parentElement.querySelector('.form__error');
   if (input.checkValidity()) {
     error.textContent = '';
@@ -38,7 +37,7 @@ function checkInputValidity(input) {
   } else {
     error.textContent = input.dataset.error ?? 'Invalid Input';
     input.classList.add('_error');
-        return false;
+    return false;
   }
 }
 

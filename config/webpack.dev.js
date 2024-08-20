@@ -58,7 +58,7 @@ const config = {
     //devMiddleware: {
     //	writeToDisk: true,
     //},
-    watchFiles: [`${paths.src}/**/*.html`, `${paths.src}/**/*.pug`, `${paths.src}/**/*.json`, `${paths.src}/**/*.htm`, `${paths.src}/img/**/*.*`, `${paths.src}/**/*.json`],
+    watchFiles: [`${paths.src}/**/*.html`, `${paths.src}/**/*.pug`, `${paths.src}/**/*.json`, `${paths.src}/**/*.htm`, `${paths.src}/img/**/*.*`],
   },
   module: {
     rules: [

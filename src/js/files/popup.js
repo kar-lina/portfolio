@@ -1,6 +1,5 @@
 export const showPopup = (popupId) => {
   const popup = document.getElementById(popupId);
-  console.log('popup', popup);
   if (popup) {
     popup.classList.add('popup_show');
     document.body.classList.add('popup-show');

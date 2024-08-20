@@ -93,10 +93,10 @@
     text-align: right;
   }
 }
-.input {
+.form__field {
   @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5 focus:ring-pink-500 focus:border-pink-500;
 }
-.input._error, .textarea._error {
+.form__field._error {
   @apply  border border-red-500;
 }
 .textarea {
